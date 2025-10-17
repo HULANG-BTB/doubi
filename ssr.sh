@@ -20,7 +20,7 @@ config_folder="/etc/shadowsocksr"
 config_user_file="${config_folder}/user-config.json"
 ssr_log_file="${ssr_ss_file}/ssserver.log"
 Libsodiumr_file="/usr/local/lib/libsodium.so"
-Libsodiumr_ver_backup="1.0.13"
+Libsodiumr_ver_backup="1.0.20"
 Server_Speeder_file="/serverspeeder/bin/serverSpeeder.sh"
 LotServer_file="/appex/bin/serverSpeeder.sh"
 BBR_file="${file}/bbr.sh"
@@ -777,6 +777,7 @@ Install_Libsodium(){
 		./configure --disable-maintainer-mode && make -j2 && make install
 	fi
 	ldconfig
+	ln -s /usr/local/lib/libsodium.a /usr/local/lib/liblibsodium.a
 	cd .. && rm -rf libsodium-${Libsodiumr_ver}.tar.gz && rm -rf libsodium-${Libsodiumr_ver}
 	[[ ! -e ${Libsodiumr_file} ]] && echo -e "${Error} libsodium 安装失败 !" && exit 1
 	echo && echo -e "${Info} libsodium 安装成功 !" && echo
